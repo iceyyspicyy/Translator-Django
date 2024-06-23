@@ -8,7 +8,7 @@ def home(request):
         language = request.POST.get('language')
         translator = Translator(to_lang=language) 
         translation = translator.translate(text)  
-        return HttpResponse(translation)
+        return render(request,'translate.html', {'translation':translation})
     return render(request, 'index.html')
 
 
