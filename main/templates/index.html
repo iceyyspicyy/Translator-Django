@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Translate it!</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .container {
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 18px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 900px;
+            text-align: center;
+        }
+        input[type="text"]{
+            width: 90%;
+            padding: 50px;
+            margin: 10px 20;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            
+        }
+        select, button {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+        button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        .back-button {
+            background-color: #f44336;
+        }
+        .back-button:hover {
+            background-color: #e53935;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <form method="post">
+            {% csrf_token %}
+            <input type="text" name="translate" placeholder="Enter text to translate" required>
+            <br/>
+            <select required name="language">
+                <option value="Nepali">Nepali</option>
+                <option value="Chinese">Chinese</option>
+                <option value="German">German</option>
+            </select>
+            <br/>
+            <button type="submit">Translate</button>
+        </form>
+        {% if translated_text %}
+        <div class="result">
+            <h3>Translated Text</h3>
+            <p>{{ translated_text }}</p>
+            <button class="back-button" onclick="window.history.back()">Go Back</button>
+        </div>
+        {% endif %}
+    </div>
+</body>
+</html>
